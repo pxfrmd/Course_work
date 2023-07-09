@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class CommandRemove implements CommandsHandler{
 
-        private int isNumber(String str) {
+        public static int isNumber(String str) {
             int num;
             try {
                 num = Integer.parseInt(str);

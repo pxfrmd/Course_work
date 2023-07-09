@@ -13,10 +13,10 @@ public class CommandNewNote implements CommandsHandler {
     public static final Logger LOGGER = Logger.getLogger(CommandNewNote.class.getName());
 
 
-    private boolean isTxtCorrect(String txt) throws NoteException {
+    public static boolean isTxtCorrect(String txt) throws NoteException {
         return txt.length() < 3;
     }
-    private boolean isLabelCorrect(String label) throws NoteException {
+    public static boolean isLabelCorrect(String label) throws NoteException {
         return label.matches("^[a-zA-ZА-Яа-яЁё ]*$");
     }
 

@@ -1,6 +1,7 @@
-package Commands;
+package Domain;
 
-import Domain.Note;
+import Commands.CommandNewNote;
+import Commands.CommandsHandler;
 import Exceptions.NoteException;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,27 +13,27 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CommandNewNoteTest {
+public class ChecksTest {
     @Test
     void txtIslongerThanThreeSymbols() throws Exception {
         String testString = "ABCDEFG";
-        assertTrue(CommandNewNote.isTxtCorrect(testString));
+        assertTrue(Checks.isTxtCorrect(testString));
     }
 
     @Test
     void txtIsShorterThanThreeSymbols() throws Exception {
         String testString = "abc";
-        assertFalse(CommandNewNote.isTxtCorrect(testString));
+        assertFalse(Checks.isTxtCorrect(testString));
     }
     @Test
     void labelContainsOnlyLetters() throws Exception {
         String correctLabel = "sdsdf";
-        assertTrue(CommandNewNote.isLabelCorrect(correctLabel));
+        assertTrue(Checks.isLabelCorrect(correctLabel));
     }
     @Test
     void labelContainsLettersAndNumbers() throws Exception {
         String wrongLabel = "adsf1";
-        assertFalse(CommandNewNote.isLabelCorrect(wrongLabel));
+        assertFalse(Checks.isLabelCorrect(wrongLabel));
     }
 
 
@@ -88,5 +89,16 @@ public class CommandNewNoteTest {
             assertThrows(NoteException.class, newNote::handler);
             assertEquals("Метка может содержать только буквы!", e.getMessage());
         }
+    }
+
+    @Test
+    void isNumberPositiveTest() {
+        String num = "5";
+        assertEquals(5, Checks.isNumber(num));
+    }
+    @Test
+    void isNumberNegativeTest() {
+        String testString = "g";
+        assertEquals(-1, Checks.isNumber(testString));
     }
 }

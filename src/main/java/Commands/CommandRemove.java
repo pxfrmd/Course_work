@@ -6,17 +6,11 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static Domain.Checks.isNumber;
+
 public class CommandRemove implements CommandsHandler{
 
-        public static int isNumber(String str) {
-            int num;
-            try {
-                num = Integer.parseInt(str);
-            } catch (NumberFormatException e) {
-                return -1;
-            }
-            return num;
-        }
+
         private static final Logger LOGGER = Logger.getLogger(CommandRemove.class.getName());
         @Override
         public void handler() throws NoteException {

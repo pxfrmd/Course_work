@@ -15,25 +15,16 @@ public class CommandExport implements CommandsHandler {
         public void handler() {
             LOGGER.fine("Вызвана команда {note_export}");
 
-            FileWriter fw = null;
-            try {
-                fw = new FileWriter(setFilename(), false);
+            try (FileWriter fw = new FileWriter(setFilename(), false)) {
                 for (Note note : Note.noteList) {
                     fw.write(note.toString());
                 }
                 fw.flush();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
-            } finally {
-                try {
-                    if (fw != null) {
-                        fw.close();
-                    }
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
                 }
             }
-        }
+
         private String setFilename() {
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd_HH-mm-ss");
